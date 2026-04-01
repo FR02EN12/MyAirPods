@@ -1,0 +1,403 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="general_share_action">Share</string>
+    <string name="general_done_action">Done</string>
+    <string name="general_cancel_action">Cancel</string>
+    <string name="general_copy_action">Copy</string>
+    <string name="general_thank_you_label">Thank you</string>
+    <string name="general_upgrade_action">Upgrade</string>
+    <string name="common_feature_requires_pro_msg">Upgrade to unlock.</string>
+    <string name="general_donate_action">Donate</string>
+    <string name="general_check_action">Check</string>
+    <string name="general_close_action">Close</string>
+    <string name="general_save_action">Save</string>
+    <string name="general_guide_action">Guide</string>
+    <string name="general_continue_action">Continue</string>
+    <string name="general_show_action">Show</string>
+    <string name="general_hide_action">Hide</string>
+
+    <string name="general_example_label">E.g.: %s</string>
+
+    <string name="upgrade_capod_label">Upgrade CAPod</string>
+    <string name="upgrade_capod_description">Get additional features and support the developer.</string>
+    <string name="upgrade_preamble">CAPod is developed by a single person. Upgrading unlocks extra features and helps keep the app alive.</string>
+    <string name="upgrade_benefit_themes">Theme customization</string>
+    <string name="upgrade_benefit_autoplay">Auto-play &amp; auto-pause</string>
+    <string name="upgrade_benefit_autoconnect">Auto-connect</string>
+    <string name="upgrade_benefit_popups">Popup on case open &amp; connection</string>
+    <string name="upgrade_benefit_widgets">Home screen widgets</string>
+    <string name="upgrade_benefit_support">Support the developer</string>
+
+    <string name="upgrade_screen_options_description">Same features, different pricing. The subscription includes a free trial and can be cancelled at any time.</string>
+
+    <string name="upgrade_screen_subscription_trial_action">Start free trial</string>
+    <string name="upgrade_screen_subscription_action">Subscribe yearly</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/year</string>
+    <string name="upgrade_screen_iap_action">Buy once</string>
+    <string name="upgrade_screen_iap_action_hint">One-time purchase: %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Restore purchase</string>
+    <string name="upgrade_screen_restore_purchase_message">No purchases found. Are you using the right account?</string>
+    <string name="upgrade_screen_restore_troubleshooting_msg">If you\'ve recently purchased, it may take a moment for Google Play to sync.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Try again in a few minutes if your purchase doesn\'t appear.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Make sure you\'re signed in with the same Google account used for the purchase.</string>
+
+    <string name="settings_monitor_mode_label">Monitor mode</string>
+    <string name="settings_monitor_mode_description">Under which circumstances this app monitors Bluetooth data.</string>
+    <string name="settings_monitor_connected_notification_label">Extra notification</string>
+    <string name="settings_monitor_connected_notification_description">Shows an extra notification when a device is connected. This lets you hide the permanent \"No devices\" notification by disabling the \"Device status\" channel.</string>
+    <string name="settings_keep_notification_after_disconnect_label">Keep notification after disconnect</string>
+    <string name="settings_keep_notification_after_disconnect_description">Continue showing the last known battery levels even after your AirPods disconnect</string>
+    <string name="settings_scanner_mode_label">Scanner mode</string>
+    <string name="settings_scanner_mode_description">Should the Bluetooth Low Energy data scanner prioritize performance or conserve energy?</string>
+    <string name="settings_autopause_label">Auto pause</string>
+    <string name="settings_autopause_description">Pause audio when removing the device from your ear.</string>
+    <string name="settings_autopplay_label">Auto play</string>
+    <string name="settings_autoplay_description">Start audio playback when device is worn.</string>
+    <string name="settings_eardetection_info_label">Ear detection note</string>
+    <string name="settings_eardetection_info_description">If ear detection only works for one pod, this is an Apple limitation. Only the \"primary pod\" (used for microphone) is detected. Configure on Apple devices: Settings → Bluetooth → AirPods → Microphone.</string>
+    <string name="settings_fake_data_label">Fake data</string>
+    <string name="settings_fake_data_description">Show fake data, i.e., simulate devices that don\’t exist.</string>
+    <string name="settings_debug_label">Debug settings</string>
+    <string name="settings_debug_description">Additional settings to help troubleshoot issues with the app.</string>
+    <string name="settings_signal_minimum_label">Minimum signal quality</string>
+    <string name="settings_signal_minimum_description">The minimum signal quality that a device needs to have to be considered yours.</string>
+    <string name="settings_autoconnect_label">Auto connect</string>
+    <string name="settings_autoconnect_description">If Android does not automatically connect, we can ask it too. This will set the monitor mode setting to \'Always\'. May not work on newer Android versions.</string>
+    <string name="settings_autoconnect_condition_label">Auto connect condition</string>
+    <string name="settings_autoconnect_condition_description">When should we try to connect to your device?</string>
+    <string name="settings_devices_label">Devices</string>
+    <string name="settings_devices_description">Manage your devices.</string>
+    <string name="settings_reaction_label">Reactions</string>
+    <string name="settings_reaction_description">React to events and behaviors.</string>
+    <string name="settings_category_yourdevice_label">Your device</string>
+
+    <string name="settings_category_compatibility_options_title">Compatibility options</string>
+    <string name="settings_category_compatibility_options_description">Don\'t touch if everything works ;)</string>
+    <string name="settings_compat_offloaded_filtering_disabled_title">Disable hardware filtering</string>
+    <string name="settings_compat_offloaded_filtering_disabled_summary">Don\'t delegate data filtering to the system, instead get all data and filter within the app.</string>
+    <string name="settings_compat_offloaded_batching_disabled_title">Disable hardware batching</string>
+    <string name="settings_compat_offloaded_batching_disabled_summary">Don\'t let the system group collected BLE data before forwarding it to us.</string>
+
+    <string name="settings_onepod_mode_label">One pod mode</string>
+    <string name="settings_onepod_mode_description">Wearing both pods is not required, wearing a single pod is sufficient to trigger reactions.</string>
+    <string name="settings_popup_caseopen_label">Show case popup</string>
+    <string name="settings_popup_caseopen_description">Show a popup when the device case is opened (experimental).</string>
+    <string name="settings_popup_connected_label">Show connection popup</string>
+    <string name="settings_popup_connected_description">Show a popup when the device connects for the first time.</string>
+
+    <string name="notification_channel_device_status_label">Device status</string>
+    <string name="notification_channel_device_status_connected_label">Connected device</string>
+    <string name="monitor_notification_extra_enabled_hint">You can disable this notification in system settings.</string>
+
+    <string name="support_debuglog_label">Debug log</string>
+    <string name="support_debuglog_desc">Record everything the app is doing into a text file that you can share.</string>
+    <string name="debug_debuglog_size_label">Size</string>
+    <string name="debug_debuglog_size_compressed_label">Compressed size</string>
+    <string name="debug_notification_channel_label">Debug notifications</string>
+    <string name="debug_debuglog_file_label">Recorded log file</string>
+    <string name="debug_debuglog_recording_progress">Recording debug log</string>
+    <string name="debug_debuglog_record_action">Record debug log</string>
+    <string name="debug_debuglog_stop_action">Stop recording</string>
+    <string name="debug_debuglog_sensitive_information_message">The generated file contains sensitive information (e.g. Bluetooth device details). Only share it with trusted parties.</string>
+    <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. Bluetooth device details). Only share it with trusted parties (e.g. a developer that is troubleshooting an issue).</string>
+
+    <string name="settings_support_installid_label">Install ID</string>
+    <string name="settings_support_installid_desc">Automatic error reports are anonymous. Share your install ID if the developer needs to find your error reports.</string>
+    <string name="settings_support_label">Support</string>
+    <string name="settings_support_description">If you need some help.</string>
+
+    <string name="settings_wiki_label">Wiki</string>
+    <string name="settings_wiki_description">FAQ &amp; Guides</string>
+
+    <string name="issue_tracker_label">Issue tracker</string>
+    <string name="issue_tracker_description">A public issue tracker for bug reports and feature requests (english only).</string>
+
+    <string name="discord_label">Discord</string>
+    <string name="discord_description">A place to hang out in and ask questions.</string>
+
+    <string name="changelog_label">Changelog</string>
+    <string name="settings_label">Settings</string>
+    <string name="settings_privacy_policy_label">Privacy policy</string>
+    <string name="settings_privacy_policy_desc">Handling data responsibly.</string>
+    <string name="settings_licenses_label">Licenses</string>
+    <string name="settings_category_other_label">Other</string>
+    <string name="settings_category_gethelp_label">Get help</string>
+    <string name="settings_category_debug_label">Debug</string>
+    <string name="settings_general_label">Settings</string>
+    <string name="settings_general_description">General tweaks that affect the whole app.</string>
+    <string name="settings_acknowledgements_label">Acknowledgements</string>
+
+    <string name="settings_debug_autoreports_label">Automatic bug reports</string>
+    <string name="settings_debug_autoreports_description">Automatically reports issues, e.g. details on an app crash so I can figure out how to fix it.</string>
+    <string name="settings_debug_mode_label">Debug mode</string>
+    <string name="settings_debug_mode_description">Show additional information to troubleshoot issues.</string>
+
+    <string name="settings_blescanner_unfiltered_label">Unfiltered BLE data</string>
+    <string name="settings_blescanner_unfiltered_description">Remove any filters from the BLE scanner to show all broadcasted BLE data. Useful to add support for new headphone types.</string>
+
+    <string name="settings_compatibility_mode_label">Compatibility mode</string>
+    <string name="settings_compatibility_mode_description">Disable optimizations to improve compatibility. Try this if you are not seeing any data.</string>
+
+    <string name="help_translate_label">Translation</string>
+    <string name="help_translate_description">Help translate this app into your favorite language.</string>
+
+    <string name="translators_thanks_title">Translators</string>
+    <string name="translators_thanks_description">darken</string>
+
+    <string name="widget_description">A widget showing the last known device status.</string>
+    <string name="widget_config_screen_title">Widget Configuration</string>
+    <string name="widget_configuration_title">Select Device</string>
+    <string name="widget_configuration_description">Choose which device profile this widget should display.</string>
+
+    <string name="widget_no_data_label">No data</string>
+    <string name="widget_error_loading_label">Error loading widget</string>
+    <string name="widget_config_appearance_label">Appearance</string>
+    <string name="widget_config_preset_label">Presets</string>
+    <string name="widget_config_background_color_label">Background color</string>
+    <string name="widget_config_foreground_color_label">Text &amp; icon color</string>
+    <string name="widget_config_transparency_label">Background transparency</string>
+    <string name="widget_config_show_device_label">Show device name</string>
+    <string name="widget_config_reset_label">Reset to defaults</string>
+    <string name="widget_config_custom_label">Custom</string>
+    <string name="widget_config_preset_material_you">Material You</string>
+    <string name="widget_config_preset_dark">Dark</string>
+    <string name="widget_config_preset_light">Light</string>
+    <string name="widget_config_preset_blue">Blue</string>
+    <string name="widget_config_preset_green">Green</string>
+    <string name="widget_config_preset_red">Red</string>
+    <string name="settings_compat_indirectcallback_title">Indirect data delivery</string>
+    <string name="settings_compat_indirectcallback_summary">Use an alternative method to receive BLE data from the system (broadcast instead of callback).</string>
+
+    <string name="troubleshooter_title">Troubleshooter</string>
+    <string name="troubleshooter_summary">Diagnose and fix Bluetooth connectivity issues.</string>
+    <string name="troubleshooter_ble_intro_title">Bluetooth Low Energy Broadcasts</string>
+    <string name="troubleshooter_ble_intro_body1">AirPods (and similar headphones) broadcast status information using a BLE technology called \"advertisements\". Some phones don\'t implement this technology correctly. CAPod can attempt to fix this by trying different compatibility options until data is received. Start music playback on your headphones and place them close to your phone, then start the process.</string>
+    <string name="troubleshooter_ble_intro_start_action">Start troubleshooting</string>
+    <string name="troubleshooter_ble_process_title">Troubleshoot in progress</string>
+    <string name="troubleshooter_ble_process_subtile">Each step takes 5–10 seconds</string>
+    <string name="troubleshooter_ble_result_success_title">Success</string>
+    <string name="troubleshooter_ble_result_success_body">BLE advertisement broadcasts are being received by CAPod.</string>
+    <string name="troubleshooter_ble_result_failure_title">Unsuccessful</string>
+    <string name="troubleshooter_ble_result_failure_body">Troubleshooting failed. No combination of compatibility options helped.</string>
+    <string name="troubleshooter_ble_result_failure_phone_body">Your phone didn\'t receive any BLE data at all. You can retry this test in a crowded area to see if data sources (other than your headphones) can be received. No data being received points towards an issue with your phone\'s operating system.</string>
+    <string name="troubleshooter_ble_result_failure_phone_headphones">Your phone received BLE data, but the data does not come from any supported device. Are your headphones powered on? Does CAPod support your headphone?</string>
+    <string name="troubleshooter_ble_result_failure_action">Try again</string>
+    <string name="troubleshoot_action">Troubleshoot</string>
+
+    <!-- Strings from app-common -->
+    <string name="app_name">MyAirPods</string>
+    <string name="app_name_pro">MyAirPods Pro</string>
+    <string name="app_name_foss">MyAirPods FOSS</string>
+
+    <string name="general_value_not_available_label">N/A</string>
+    <string name="general_error_label">Error</string>
+    <string name="general_grant_permission_action">Grant permission</string>
+    <string name="general_manage_devices_action">Manage devices</string>
+
+    <string name="overview_nomaindevice_label">No device configured</string>
+    <string name="overview_nomaindevice_description">Configure your device to start monitoring battery levels and enable additional features.</string>
+    <string name="overview_bluetooth_disabled_label">Bluetooth is disabled</string>
+    <string name="overview_bluetooth_disabled_description">Bluetooth is disabled, enable it ;)</string>
+    <string name="overview_monitoring_active_label">Monitoring for devices</string>
+    <string name="overview_monitoring_active_description">Make sure your device is nearby and active.</string>
+    <string name="overview_unmatched_devices_label">Unmatched devices</string>
+    <plurals name="overview_unmatched_devices_count">
+        <item quantity="one">%d device without matching profile</item>
+        <item quantity="other">%d devices without matching profile</item>
+    </plurals>
+
+    <string name="permission_bluetooth_connect_label">Bluetooth connect</string>
+    <string name="permission_bluetooth_connect_description">This app requires the \"Bluetooth connect\" permission to interact with paired devices and initiate connections.</string>
+    <string name="permission_bluetooth_scan_label">Bluetooth scanning</string>
+    <string name="permission_bluetooth_scan_description">The \"Bluetooth scanning\" permission allows this app to discover and receive Bluetooth data from nearby devices such as your AirPods.</string>
+    <string name="permission_bluetooth_label">Bluetooth</string>
+    <string name="permission_bluetooth_description">This app requires the \"Bluetooth\" permission to connect to paired bluetooth devices.</string>
+    <string name="permission_access_fine_location_label">Access fine location</string>
+    <string name="permission_access_fine_location_description">CAPod uses the \"fine location\" permission to receive Bluetooth Low Energy data. Your headphones use Bluetooth Low Energy technology to broadcast their status. This app will NOT use Bluetooth data to determine your location.</string>
+    <string name="permission_background_location_label">Background location access</string>
+    <string name="permission_background_location_description">CAPod uses \"background location access\" to enable features like \"Show popup\" and \"AutoConnect\" while the app is closed. Background location access allows the app to receive Bluetooth Low Energy data while it is in the background. This app will NOT use Bluetooth data to determine your location.</string>
+    <string name="permission_ignore_battery_optimizations_label">Disable battery optimizations</string>
+    <string name="permission_ignore_battery_optimizations_description">Battery optimizations prevent this app from reliably receiving Bluetooth data while the app is in the background.</string>
+    <string name="permission_required_title">The following permission is required:</string>
+    <string name="permission_system_alert_window_label">System Alert Window</string>
+    <string name="permission_system_alert_window_description">Allow CAPod to draw over other apps to make the feature \"Show PopUp\" possible.</string>
+
+    <string name="settings_scanner_mode_lowpower_label">Low power</string>
+    <string name="settings_scanner_mode_balanced_label">Balanced</string>
+    <string name="settings_scanner_mode_lowlatency_label">Low latency</string>
+
+    <string name="settings_monitor_mode_manual_label">When app is open</string>
+    <string name="settings_monitor_mode_automatic_label">When device is connected</string>
+    <string name="settings_monitor_mode_always_label">Always</string>
+
+    <string name="settings_reaction_autoconnect_whenseen_label">When seen</string>
+    <string name="settings_reaction_autoconnect_caseopen_label">Case is open</string>
+    <string name="settings_reaction_autoconnect_inear_label">In ear</string>
+
+    <string name="pods_dual_left_label">Left pod</string>
+    <string name="pods_dual_right_label">Right pod</string>
+    <string name="pods_case_label">Case</string>
+    <string name="pods_case_status_open_label">Open</string>
+    <string name="pods_case_status_closed_label">Closed</string>
+    <string name="pods_connection_state_disconnected_label">Not connected to a device</string>
+    <string name="pods_connection_state_idle_label">Connected to a device, but idle</string>
+    <string name="pods_connection_state_music_label">In music mode</string>
+    <string name="pods_connection_state_call_label">In call mode</string>
+    <string name="pods_connection_state_ringing_label">Ringing</string>
+    <string name="pods_connection_state_hanging_up_label">Hanging up</string>
+    <string name="pods_connection_state_unknown_label">Unknown connection state</string>
+    <string name="pods_unknown_raw_data_label">Raw data</string>
+    <string name="pods_unknown_label">Unknown device</string>
+    <string name="pods_unknown_contact_dev">This is an unknown device, but it is using similar message format. Let\'s add support for it, contact me :)</string>
+    <string name="pods_none_label_short">No device</string>
+    <string name="pods_charging_label">Charging</string>
+    <string name="pods_inear_label">In ear</string>
+    <string name="pods_microphone_label">Microphone</string>
+    <string name="pods_yours">Yours</string>
+    <string name="headset_being_worn_label">Being worn</string>
+    <string name="headset_not_being_worn_label">Not being worn</string>
+    <string name="pods_case_unknown_state">Unknown state</string>
+
+    <string name="last_seen_x">Last seen: %s</string>
+    <string name="first_seen_x">First seen: %s</string>
+    <string name="permission_post_notifications_label">Show notifications</string>
+    <string name="permission_post_notifications_description">"Allow CAPod to show notifications about your AirPods, e.g. their current status while connected."</string>
+
+    <!-- Device profiles -->
+    <string name="profiles_empty_title">No device profiles configured</string>
+    <string name="profiles_empty_description">Create device profiles to manage multiple devices with custom settings and priorities.</string>
+    <string name="profiles_add_action">Add profile</string>
+    <string name="profiles_create_title">Create Profile</string>
+    <string name="profiles_name_label">Profile name</string>
+    <string name="profiles_name_empty_error">Name can\'t be empty</string>
+    <string name="profiles_name_default">My Headphones</string>
+    <string name="profiles_model_label">Device model</string>
+    <string name="profiles_paired_device_label">Paired device</string>
+    <string name="profiles_paired_device_none">None</string>
+    <string name="profiles_paired_device_none_description">No device selected</string>
+    <string name="profiles_save_action">Save profile</string>
+    <string name="profiles_drag_handle_description">Drag to reorder</string>
+    <string name="profiles_delete_title">Delete Profile</string>
+    <string name="profiles_delete_message">Are you sure you want to delete this profile? This action cannot be undone.</string>
+    <string name="profiles_delete_action">Delete</string>
+    <string name="profiles_basic_info_title">Device Information</string>
+    <string name="profiles_basic_info_description">Configure your device name, model, and optional Bluetooth pairing.</string>
+    <string name="profiles_signal_quality_title">Minimum Signal Quality</string>
+    <string name="profiles_signal_quality_description">Only detect devices with signal strength above this threshold. Lower values increase detection range but may cause false positives. Don\'t set this too high - Bluetooth reception is generally poor and varies with distance and obstacles.</string>
+    <string name="profiles_identitykey_label">Identity Key</string>
+    <string name="profilessettings_maindevice_identitykey_description">Your device\'s Identity Resolving Key (IRK), which helps CAPod identify it among nearby devices.</string>
+    <string name="profiles_maindevice_identitykey_explanation">AirPods frequently change their Bluetooth address for privacy. The IRK helps CAPod recognize your device. You need one-time access to a MacBook.</string>
+    <string name="profiles_maindevice_encryptionkey_label">Encryption Key</string>
+    <string name="profiles_maindevice_encryptionkey_description">Your device\'s encryption key, which allows CAPod to retrieve detailed status information.</string>
+    <string name="profiles_maindevice_encryptionkey_explanation">AirPods send a status message, part of which is encrypted. The encryption key allows CAPod to decrypt the full message. You need one-time access to a MacBook.</string>
+    <string name="profiles_key_invalid_format">Invalid key format</string>
+    <string name="profiles_key_expected_format">Expected format: %1$s</string>
+    <string name="profiles_key_status_configured">Configured</string>
+    <string name="profiles_key_status_not_set">Not set</string>
+    <string name="profiles_signal_quality_min_label">Off</string>
+    <string name="profiles_signal_quality_max_label">Strict</string>
+    <string name="profiles_priority_hint">Profile order determines priority. Drag profiles to reorder them - profiles higher in the list take precedence when multiple devices match.</string>
+
+    <!-- Theme Mode -->
+    <string name="ui_theme_mode_label">Theme mode</string>
+    <string name="ui_theme_mode_system_label">System</string>
+    <string name="ui_theme_mode_dark_label">Dark</string>
+    <string name="ui_theme_mode_light_label">Light</string>
+
+    <!-- Theme Style -->
+    <string name="ui_theme_style_label">Theme style</string>
+    <string name="ui_theme_style_default_label">Default</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_medium_contrast_label">Medium contrast</string>
+    <string name="ui_theme_style_high_contrast_label">High contrast</string>
+
+    <!-- Theme Color -->
+    <string name="ui_theme_color_label">Theme color</string>
+    <string name="ui_theme_color_blue_label">Blue</string>
+    <string name="ui_theme_color_green_label">Green</string>
+    <string name="ui_theme_color_amber_label">Amber</string>
+    <string name="ui_theme_color_disabled_materialyou">Uses wallpaper colors</string>
+
+    <!-- Settings categories -->
+    <string name="settings_category_monitoring_label">Monitoring</string>
+    <string name="settings_category_appearance_label">Appearance</string>
+
+    <!-- Unsaved changes dialog -->
+    <string name="general_unsaved_changes_title">Unsaved Changes</string>
+    <string name="general_unsaved_changes_message">You have unsaved changes. What would you like to do?</string>
+    <string name="general_save_and_exit_action">Save &amp; Exit</string>
+    <string name="general_discard_action">Discard</string>
+    <string name="general_keep_editing_action">Keep Editing</string>
+
+    <!-- Short recording warning -->
+    <string name="debug_debuglog_short_recording_title">Recording too short</string>
+    <string name="debug_debuglog_short_recording_message">A debug log needs to capture the issue while it happens. Keep recording, reproduce the problem, then stop the recording.</string>
+    <string name="debug_debuglog_short_recording_continue">Continue recording</string>
+    <string name="debug_debuglog_short_recording_stop">Stop anyway</string>
+
+    <!-- Recorder screen -->
+    <string name="debug_debuglog_screen_title">Debug Log</string>
+    <string name="debug_debuglog_screen_subtitle">Export debug information for troubleshooting</string>
+    <string name="debug_debuglog_screen_sensitive_title">Sensitive Information</string>
+    <string name="debug_debuglog_screen_session_path_label">Session Path</string>
+    <string name="debug_debuglog_screen_log_files_label">Log Files</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d file ready (%2$s)</item>
+        <item quantity="other">%1$d files ready (%2$s)</item>
+    </plurals>
+    <string name="debug_debuglog_screen_discard_action">Delete</string>
+    <string name="debug_debuglog_screen_keep_action">Keep</string>
+
+    <!-- Log management -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d debug log (%2$s)</item>
+        <item quantity="other">%1$d debug logs (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_action">Clear stored debug logs</string>
+    <string name="support_debuglog_sessions_label">Debug sessions</string>
+    <string name="support_debuglog_sessions_desc">Manage recorded debug log sessions</string>
+    <string name="support_debuglog_sessions_empty">No debug sessions</string>
+    <string name="support_debuglog_session_recording">Recording…</string>
+    <string name="support_debuglog_session_compressing">Compressing…</string>
+    <string name="support_debuglog_session_delete_title">Delete session?</string>
+    <string name="support_debuglog_session_delete_message">This debug session will be permanently deleted.</string>
+    <string name="support_debuglog_clear_all_message">All debug sessions will be permanently deleted.</string>
+    <string name="support_debuglog_failed_empty_log">Failed: log file is empty</string>
+    <string name="support_debuglog_failed_missing_log">Failed: log file is missing</string>
+    <string name="support_debuglog_failed_corrupt_zip">Failed: zip file is corrupt</string>
+    <string name="support_debuglog_failed_zip_failed">Failed: compression failed</string>
+
+    <!-- Contact form -->
+    <string name="support_contact_label">Contact developer</string>
+    <string name="support_contact_desc">Fill out a form to send the developer an email.</string>
+    <string name="support_contact_welcome">I read every message myself and do my best to reply, but since I work on this alone, it can take a little time. Thanks for your patience.</string>
+    <string name="support_contact_footer">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email. Some parts of the email will be in English so the developer can easily understand it.</string>
+    <string name="support_contact_category_label">Category</string>
+    <string name="support_contact_category_question_label">Question</string>
+    <string name="support_contact_category_feature_label">Feature request</string>
+    <string name="support_contact_category_bug_label">Bug report</string>
+    <string name="support_contact_description_label">Description</string>
+    <string name="support_contact_description_question_hint">Describe your question in detail. Please be specific.</string>
+    <string name="support_contact_description_feature_hint">Describe the feature you would like to see. Please be specific.</string>
+    <string name="support_contact_description_bug_hint">Describe what happened and how to reproduce the issue. Please be specific.</string>
+    <string name="support_contact_expected_label">Expected behavior</string>
+    <string name="support_contact_expected_hint">Describe what you expected to happen.</string>
+    <plurals name="support_contact_word_count">
+        <item quantity="one">%1$d / %2$d word</item>
+        <item quantity="other">%1$d / %2$d words</item>
+    </plurals>
+    <string name="support_contact_debuglog_label">Debug log</string>
+    <string name="support_contact_debuglog_picker_hint">Attach an existing debug log, or record a new one.</string>
+    <string name="support_contact_debuglog_picker_empty">No debug logs found. Record one first.</string>
+    <string name="support_contact_debuglog_zip_error">Failed to compress debug log</string>
+    <string name="support_contact_send_action">Open email app</string>
+    <string name="support_contact_no_email_app">No email app found on this device.</string>
+    <string name="support_contact_debuglog_delete_title">Delete debug log?</string>
+    <string name="support_contact_debuglog_delete_message">This debug log will be permanently deleted.</string>
+
+    <!-- Post-share confirmation -->
+    <string name="support_debuglog_sent_title">Log sent?</string>
+    <string name="support_debuglog_sent_message">Was the debug log sent successfully? The log will be deleted.</string>
+    <string name="support_contact_sent_title">Email sent?</string>
+    <string name="support_contact_sent_message">Was the email sent successfully? The attached debug log will be deleted.</string>
+
+</resources>

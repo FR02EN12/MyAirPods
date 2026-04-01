@@ -1,0 +1,306 @@
+package eu.darken.capod.main.ui.overview
+
+import android.content.Intent
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.twotone.DevicesOther
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+import eu.darken.capod.R
+import eu.darken.capod.common.compose.Preview2
+import eu.darken.capod.common.compose.PreviewWrapper
+import eu.darken.capod.common.compose.preview.MockPodDataProvider
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import eu.darken.capod.common.error.ErrorEventHandler
+import eu.darken.capod.common.navigation.NavigationEventHandler
+import eu.darken.capod.common.permissions.Permission
+import eu.darken.capod.main.ui.overview.cards.BluetoothDisabledCard
+import eu.darken.capod.main.ui.overview.cards.DualPodsCard
+import eu.darken.capod.main.ui.overview.cards.MonitoringActiveCard
+import eu.darken.capod.main.ui.overview.cards.NoProfilesCard
+import eu.darken.capod.main.ui.overview.cards.PermissionCard
+import eu.darken.capod.main.ui.overview.cards.SinglePodsCard
+import eu.darken.capod.main.ui.overview.cards.UnknownPodDeviceCard
+import eu.darken.capod.main.ui.overview.cards.UnmatchedDevicesCard
+import eu.darken.capod.pods.core.DualPodDevice
+import eu.darken.capod.pods.core.PodDevice
+import eu.darken.capod.pods.core.SinglePodDevice
+import java.time.Instant
+
+@Composable
+fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
+    ErrorEventHandler(vm)
+    NavigationEventHandler(vm)
+
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        vm.workerAutolaunch.collect {}
+    }
+
+    var awaitingPermission by rememberSaveable { mutableStateOf(false) }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        vm.onPermissionResult(granted)
+    }
+
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+        if (awaitingPermission) {
+            awaitingPermission = false
+            vm.onPermissionResult(true)
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        vm.requestPermissionEvent.collect { permission ->
+            when (permission) {
+                Permission.IGNORE_BATTERY_OPTIMIZATION -> {
+                    awaitingPermission = true
+                    context.startActivity(
+                        Intent(
+                            Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                            "package:${context.packageName}".toUri()
+                        )
+                    )
+                }
+
+                Permission.SYSTEM_ALERT_WINDOW -> {
+                    awaitingPermission = true
+                    context.startActivity(
+                        Intent(
+                            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            "package:${context.packageName}".toUri()
+                        )
+                    )
+                }
+
+                else -> {
+                    permissionLauncher.launch(permission.permissionId)
+                }
+            }
+        }
+    }
+
+    val state by vm.state.collectAsStateWithLifecycle(initialValue = null)
+    val currentState = state ?: return
+
+    OverviewScreen(
+        state = currentState,
+        onRequestPermission = { vm.requestPermission(it) },
+        onManageDevices = { vm.goToDeviceManager() },
+        onSettings = { vm.goToSettings() },
+        onToggleUnmatched = { vm.toggleUnmatchedDevices() },
+    )
+}
+
+@Composable
+fun OverviewScreen(
+    state: OverviewViewModel.State,
+    onRequestPermission: (Permission) -> Unit,
+    onManageDevices: () -> Unit,
+    onSettings: () -> Unit,
+    onToggleUnmatched: () -> Unit,
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = stringResource(R.string.app_name))
+                },
+                actions = {
+                    IconButton(onClick = onManageDevices) {
+                        Icon(
+                            imageVector = Icons.TwoTone.DevicesOther,
+                            contentDescription = stringResource(R.string.settings_devices_label),
+                        )
+                    }
+                },
+            )
+        },
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+        ) {
+            items(
+                items = state.permissions.sortedByDescending { it.isScanBlocking },
+                key = { it.permissionId },
+            ) { permission ->
+                PermissionCard(
+                    permission = permission,
+                    onRequest = onRequestPermission,
+                )
+            }
+
+            if (!state.isBluetoothEnabled && !state.isScanBlocked) {
+                item(key = "bluetooth_disabled") {
+                    BluetoothDisabledCard()
+                }
+            }
+
+            if (state.profiles.isEmpty() && !state.isScanBlocked && state.isBluetoothEnabled) {
+                item(key = "no_profiles") {
+                    NoProfilesCard(onManageDevices = onManageDevices)
+                }
+            }
+
+            if (!state.isScanBlocked && state.isBluetoothEnabled) {
+                items(
+                    items = state.profiledDevices,
+                    key = { it.identifier.hashCode() },
+                ) { device ->
+                    PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
+                }
+
+                if (state.profiles.isNotEmpty() && state.devices.isEmpty()) {
+                    item(key = "monitoring_active") {
+                        MonitoringActiveCard()
+                    }
+                }
+
+                if (state.unmatchedDevices.isNotEmpty()) {
+                    item(key = "unmatched_header") {
+                        UnmatchedDevicesCard(
+                            count = state.unmatchedDevices.size,
+                            isExpanded = state.showUnmatchedDevices,
+                            onToggle = onToggleUnmatched,
+                        )
+                    }
+
+                    if (state.showUnmatchedDevices) {
+                        items(
+                            items = state.unmatchedDevices,
+                            key = { "unmatched_${it.identifier.hashCode()}" },
+                        ) { device ->
+                            PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PodDeviceCard(device: PodDevice, showDebug: Boolean, now: Instant) {
+    when (device) {
+        is DualPodDevice -> DualPodsCard(device = device, showDebug = showDebug, now = now)
+        is SinglePodDevice -> SinglePodsCard(device = device, showDebug = showDebug, now = now)
+        else -> UnknownPodDeviceCard(device = device, showDebug = showDebug, now = now)
+    }
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenWithDevicesPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewViewModel.State(
+            now = Instant.now(),
+            permissions = emptySet(),
+            devices = listOf(
+                MockPodDataProvider.airPodsProMixed(),
+                MockPodDataProvider.airPodsMax(),
+                MockPodDataProvider.unknownDevice(),
+            ),
+            isDebugMode = false,
+            isBluetoothEnabled = true,
+            profiles = listOf(
+                MockPodDataProvider.profile("My AirPods Pro", PodDevice.Model.AIRPODS_PRO2),
+                MockPodDataProvider.profile("AirPods Max", PodDevice.Model.AIRPODS_MAX),
+            ),
+            showUnmatchedDevices = false,
+        ),
+        onRequestPermission = {},
+        onManageDevices = {},
+        onSettings = {},
+        onToggleUnmatched = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenEmptyPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewViewModel.State(
+            now = Instant.now(),
+            permissions = emptySet(),
+            devices = emptyList(),
+            isDebugMode = false,
+            isBluetoothEnabled = true,
+            profiles = listOf(MockPodDataProvider.profile("My AirPods", PodDevice.Model.AIRPODS_PRO2)),
+            showUnmatchedDevices = false,
+        ),
+        onRequestPermission = {},
+        onManageDevices = {},
+        onSettings = {},
+        onToggleUnmatched = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenNoProfilesPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewViewModel.State(
+            now = Instant.now(),
+            permissions = emptySet(),
+            devices = emptyList(),
+            isDebugMode = false,
+            isBluetoothEnabled = true,
+            profiles = emptyList(),
+            showUnmatchedDevices = false,
+        ),
+        onRequestPermission = {},
+        onManageDevices = {},
+        onSettings = {},
+        onToggleUnmatched = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenBluetoothOffPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewViewModel.State(
+            now = Instant.now(),
+            permissions = emptySet(),
+            devices = emptyList(),
+            isDebugMode = false,
+            isBluetoothEnabled = false,
+            profiles = listOf(MockPodDataProvider.profile("My AirPods", PodDevice.Model.AIRPODS_PRO2)),
+            showUnmatchedDevices = false,
+        ),
+        onRequestPermission = {},
+        onManageDevices = {},
+        onSettings = {},
+        onToggleUnmatched = {},
+    )
+}
