@@ -50,6 +50,12 @@ import eu.darken.capod.pods.core.DualPodDevice
 import eu.darken.capod.pods.core.PodDevice
 import eu.darken.capod.pods.core.SinglePodDevice
 import java.time.Instant
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.TopAppBarDefaults
 
 @Composable
 fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
@@ -131,7 +137,10 @@ fun OverviewScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(R.string.app_name))
+                    Text(
+                        text = stringResource(R.string.app_name),
+                        color = Color(0xFFFF69B4),
+                        )
                 },
                 actions = {
                     IconButton(onClick = onManageDevices) {
@@ -141,66 +150,78 @@ fun OverviewScreen(
                         )
                     }
                 },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color(0xFFFFD1DC),
+                ),
             )
         },
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
-        ) {
-            items(
-                items = state.permissions.sortedByDescending { it.isScanBlocking },
-                key = { it.permissionId },
-            ) { permission ->
-                PermissionCard(
-                    permission = permission,
-                    onRequest = onRequestPermission,
-                )
-            }
-
-            if (!state.isBluetoothEnabled && !state.isScanBlocked) {
-                item(key = "bluetooth_disabled") {
-                    BluetoothDisabledCard()
-                }
-            }
-
-            if (state.profiles.isEmpty() && !state.isScanBlocked && state.isBluetoothEnabled) {
-                item(key = "no_profiles") {
-                    NoProfilesCard(onManageDevices = onManageDevices)
-                }
-            }
-
-            if (!state.isScanBlocked && state.isBluetoothEnabled) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.mymelodybg),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                alpha = 0.3f,
+            )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+            ) {
                 items(
-                    items = state.profiledDevices,
-                    key = { it.identifier.hashCode() },
-                ) { device ->
-                    PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
+                    items = state.permissions.sortedByDescending { it.isScanBlocking },
+                    key = { it.permissionId },
+                ) { permission ->
+                    PermissionCard(
+                        permission = permission,
+                        onRequest = onRequestPermission,
+                    )
                 }
 
-                if (state.profiles.isNotEmpty() && state.devices.isEmpty()) {
-                    item(key = "monitoring_active") {
-                        MonitoringActiveCard()
+                if (!state.isBluetoothEnabled && !state.isScanBlocked) {
+                    item(key = "bluetooth_disabled") {
+                        BluetoothDisabledCard()
                     }
                 }
 
-                if (state.unmatchedDevices.isNotEmpty()) {
-                    item(key = "unmatched_header") {
-                        UnmatchedDevicesCard(
-                            count = state.unmatchedDevices.size,
-                            isExpanded = state.showUnmatchedDevices,
-                            onToggle = onToggleUnmatched,
-                        )
+                if (state.profiles.isEmpty() && !state.isScanBlocked && state.isBluetoothEnabled) {
+                    item(key = "no_profiles") {
+                        NoProfilesCard(onManageDevices = onManageDevices)
+                    }
+                }
+
+                if (!state.isScanBlocked && state.isBluetoothEnabled) {
+                    items(
+                        items = state.profiledDevices,
+                        key = { it.identifier.hashCode() },
+                    ) { device ->
+                        PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
                     }
 
-                    if (state.showUnmatchedDevices) {
-                        items(
-                            items = state.unmatchedDevices,
-                            key = { "unmatched_${it.identifier.hashCode()}" },
-                        ) { device ->
-                            PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
+                    if (state.profiles.isNotEmpty() && state.devices.isEmpty()) {
+                        item(key = "monitoring_active") {
+                            MonitoringActiveCard()
+                        }
+                    }
+
+                    if (state.unmatchedDevices.isNotEmpty()) {
+                        item(key = "unmatched_header") {
+                            UnmatchedDevicesCard(
+                                count = state.unmatchedDevices.size,
+                                isExpanded = state.showUnmatchedDevices,
+                                onToggle = onToggleUnmatched,
+                            )
+                        }
+
+                        if (state.showUnmatchedDevices) {
+                            items(
+                                items = state.unmatchedDevices,
+                                key = { "unmatched_${it.identifier.hashCode()}" },
+                            ) { device ->
+                                PodDeviceCard(device = device, showDebug = state.isDebugMode, now = state.now)
+                            }
                         }
                     }
                 }
@@ -208,6 +229,7 @@ fun OverviewScreen(
         }
     }
 }
+
 
 @Composable
 private fun PodDeviceCard(device: PodDevice, showDebug: Boolean, now: Instant) {

@@ -14,11 +14,7 @@ fun CapodTheme(
     state: ThemeState = ThemeState(),
     content: @Composable () -> Unit,
 ) {
-    val darkTheme = when (state.mode) {
-        ThemeMode.SYSTEM -> isSystemInDarkTheme()
-        ThemeMode.DARK -> true
-        ThemeMode.LIGHT -> false
-    }
+    val darkTheme = false
 
     val dynamicColors = state.style == ThemeStyle.MATERIAL_YOU && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 

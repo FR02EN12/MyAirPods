@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import eu.darken.capod.R
 import eu.darken.capod.common.compose.Preview2
 import eu.darken.capod.common.compose.PreviewWrapper
+import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.CardDefaults
 
 @Composable
 fun MonitoringActiveCard() {
@@ -22,6 +24,9 @@ fun MonitoringActiveCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFFD1DC),
+        ),
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -29,6 +34,7 @@ fun MonitoringActiveCard() {
             Text(
                 text = stringResource(R.string.overview_monitoring_active_label),
                 style = MaterialTheme.typography.titleMedium,
+                color = Color(0xFFFF69B4),
             )
 
             Spacer(modifier = Modifier.height(4.dp))
@@ -36,6 +42,7 @@ fun MonitoringActiveCard() {
             Text(
                 text = stringResource(R.string.overview_monitoring_active_description),
                 style = MaterialTheme.typography.bodyMedium,
+                color = Color(0xFFFF69B4),
             )
         }
     }
